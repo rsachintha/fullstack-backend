@@ -70,25 +70,6 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 })
 
-//Login an admin
-const loginAdmin = asyncHandler(async (req, res) => {
-    const { userName, password } = req.body
-
-    //Check for user name
-    const admin = await Admin.findOne({ userName })
-
-    if (admin && password) {
-        res.json({
-            _id: admin.id,
-            userName: admin.userName,
-            token: generateToken(admin._id)
-        })
-    } else {
-        res.status(400)
-        throw new Error('Invalid credentials')
-    }
-})
-
 module.exports = {
     createUser,
     loginUser,
