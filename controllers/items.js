@@ -23,6 +23,20 @@ const createItem = asyncHandler(async (req, res) => {
     res.status(200).json(item)
 })
 
+//Get stats
+const getStats = asyncHandler(async (req, res) => {
+    const count = await Item.count()
+    const max = await Item.findOne().sort({ quantity: -1 })
+    const min = await Item.findOne().sort({ quantity: +1 })
+
+    res.status(200).json({
+        Count: count,
+        Max: max,
+        Min: min
+    })
+})
+
+
 //Get a specific iitem
 const getItem = asyncHandler(async (req, res) => {
     const item = await Item.findById(req.params.id)
@@ -72,5 +86,6 @@ module.exports = {
     createItem,
     getItem,
     deleteItem,
-    updateItem
+    updateItem,
+    getStats
 }

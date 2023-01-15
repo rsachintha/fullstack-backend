@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
 const User = require('../models/userModel')
-const Admin = require('../models/adminModel')
 
 //Generating a token
 const generateToken = (id) => {
@@ -72,6 +71,5 @@ const loginUser = asyncHandler(async (req, res) => {
 
 module.exports = {
     createUser,
-    loginUser,
-    loginAdmin
+    loginUser
 }
