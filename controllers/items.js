@@ -12,7 +12,6 @@ const getItems = asyncHandler(async (req, res) => {
 //Add new item
 const createItem = asyncHandler(async (req, res) => {
     const item = await Item.create({
-        user: req.user.id,
         _id: req.body._id,
         itemName: req.body.itemName,
         itemDesc: req.body.itemDesc,
@@ -65,15 +64,8 @@ const deleteItem = asyncHandler(async (req, res) => {
 
 //Update a specific item
 const updateItem = asyncHandler(async (req, res) => {
-    const item = await Item.findById(req.params.id)
-
-    if (!item) {
-        res.status(400)
-        throw new Error('Item not found!')
-    }
-
-    const updatedItem = await Item.findByIdAndUpdate(
-        req.params.id,
+    const updatedItem = await Item.findOneAndUpdate(
+        { _id: req.body._id },
         { $set: { itemName: req.body.itemName, itemDesc: req.body.itemDesc, supplier: req.body.supplier, quantity: req.body.quantity } },
         { new: true },
     )

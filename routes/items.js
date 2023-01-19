@@ -9,6 +9,6 @@ router.post("/", createItem);
 router.get("/stats", getStats);
 router.get("/:id", getItem);
 router.delete("/:id", deleteItem);
-router.put("/:id", updateItem);
+router.put("/", updateItem);
 
 module.exports = router;
