@@ -42,7 +42,8 @@ const createUser = asyncHandler(async (req, res) => {
         res.status(201).json({
             _id: user.id,
             userName: user.userName,
-            token: generateToken(user._id)
+            token: generateToken(user._id),
+            message: 'User added successfully!'
         })
     } else {
         res.status(400)

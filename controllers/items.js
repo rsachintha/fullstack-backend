@@ -19,7 +19,7 @@ const createItem = asyncHandler(async (req, res) => {
         quantity: req.body.quantity
     })
 
-    res.status(200).json(item)
+    res.status(200).json({ message: 'Item added successfully!' })
 })
 
 //Get stats
@@ -36,7 +36,7 @@ const getStats = asyncHandler(async (req, res) => {
 })
 
 
-//Get a specific iitem
+//Get a specific item
 const getItem = asyncHandler(async (req, res) => {
     const item = await Item.findById(req.params.id)
 
@@ -59,7 +59,7 @@ const deleteItem = asyncHandler(async (req, res) => {
 
     await item.remove()
 
-    res.status(200).json({ id: req.params.id })
+    res.status(200).json({ message: 'Item deleted successfully!' })
 })
 
 //Update a specific item
@@ -70,7 +70,7 @@ const updateItem = asyncHandler(async (req, res) => {
         { new: true },
     )
 
-    res.status(200).json(updatedItem)
+    res.status(200).json({ message: 'Item updated successfully!' })
 })
 
 module.exports = {
